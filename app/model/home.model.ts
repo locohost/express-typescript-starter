@@ -1,6 +1,6 @@
 // app/model/home.model.ts 
 
-import BaseModel from './_base.model';
+import { BaseModel } from './_base.model';
 
 class HomeModel extends BaseModel  {
 

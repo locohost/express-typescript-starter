@@ -1,7 +1,7 @@
 // app/data/mongo/_base.data.mongo.ts 
 
 import { MongoClient, ObjectId } from 'mongodb';
-import BaseModel from '../../model/_base.model';
+import { IBaseModel, BaseModel } from '../../model/_base.model';
 import Global from '../../util/globals';
 
 class BaseData {
@@ -26,18 +26,18 @@ class BaseData {
         }
     }
 
-    static userId: string = '';
-    static userHandle: string = '';
+    static userId: string;
+    static userHandle: string;
 
     protected collectionName: string = '';
-    protected client: any = null;
-    protected collection: any = null;
-    protected db: any = null;
+    protected client: any;
+    protected collection: any;
+    protected db: any;
     protected dbServer: string = '';
     protected dbPort: string = '';
     protected dbName: string = '';
 
-    public async add(model: BaseModel) {
+    public async add<T extends IBaseModel>(model: T): Promise<any> {
         if (model.validate()) {
             model.createdByUser = (BaseData.userId);
             model.modifiedByUser = new ObjectId(BaseData.userId);
@@ -52,7 +52,7 @@ class BaseData {
         }
     }
 
-    public async update(model: BaseModel) {
+    public async update<T extends IBaseModel>(model: T): Promise<any> {
         if (model.validate()) {
             model.modifiedByUser = new ObjectId(BaseData.userId);
             model.modifiedOn = new Date();
@@ -79,7 +79,8 @@ class BaseData {
             });
     }
 
-    public async getByApp(Model: any, appId: string) {
+    public async getByApp<T extends BaseModel>
+    (Model: { new(r: any): T; }, appId: string): Promise<any> {
         let models = [];
         const results = await this.collection.find({
             "meta.deletedOn": { "$exists": false },
@@ -92,7 +93,8 @@ class BaseData {
         return models;
     }
 
-    public async getAll(Model: any) {
+    public async getAll<T extends BaseModel>
+    (Model: { new(r: any): T; }): Promise<any> {
         let models = [];
         const results = await this.collection.find({
             "meta.deletedOn": { "$exists": false }
@@ -104,7 +106,8 @@ class BaseData {
         return models;
     }
 
-    public async getById(id: string, Model: any) {
+    public async getById<T extends BaseModel>
+    (Model: { new(r: any): T; }, id: string): Promise<any> {
         const result = await this.collection.findOne(id);
         if (Global.infoLogLevel > 1) { console.log(`${this.collectionName} getById result: `, result); }
         return new Model(result);
