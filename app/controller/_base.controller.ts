@@ -1,4 +1,4 @@
-/* app/controllers/welcome.controller.ts */
+// app/controller/_base.controller.ts
 
 // Import only what we need from express
 import { Router, Request, Response } from 'express';
