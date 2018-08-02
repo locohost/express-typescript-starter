@@ -1,7 +1,8 @@
-// app/controller/welcome.controller.ts 
+// app/controller/app.controller.ts 
 
 // Import only what we need from express
 import { Router, Request, Response } from 'express';
+import AppData from '../data/mongo/app.data.mongo';
 
 // Assign router to the express.Router() instance
 const router: Router = Router();
@@ -14,13 +15,10 @@ router.get('/', (req: Request, res: Response) => {
     res.send('Hello, World!');
 });
 
-router.get('/:name', (req: Request, res: Response) => {
-    // Extract the name from the request parameters
-    let { name } = req.params;
-
-    // Greet the given name
-    res.send(`Hello, ${name}`);
+router.get('/:id', (req: Request, res: Response) => {
+    // Extract the id from the request parameters
+    let { id } = req.params;
 });
 
 // Export the express.Router() instance to be used by server.ts
-export const WelcomeController: Router = router;
+export const AppController: Router = router;

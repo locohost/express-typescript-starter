@@ -1,5 +1,5 @@
 {
-  "name": "express-typescript-starter",
+  "name": "easy-message-bus-ts",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -16,7 +16,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/locohost/express-typescript-starter.git"
+    "url": "https://github.com/locohost/easy-message-bus-ts.git"
   },
   "dependencies": {
     "@types/es6-shim": "^0.31.37",

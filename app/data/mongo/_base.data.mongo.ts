@@ -1,4 +1,4 @@
-// app/data/mongo/_base.data.ts 
+// app/data/mongo/_base.data.mongo.ts 
 
 import { MongoClient, ObjectId } from 'mongodb';
 import BaseModel from '../../model/_base.model';

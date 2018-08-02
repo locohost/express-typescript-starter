@@ -1,8 +1,8 @@
-// app/model/welcome.model.ts 
+// app/model/user.model.ts 
 
 import BaseModel from './_base.model';
 
-class WelcomeModel extends BaseModel  {
+class UserModel extends BaseModel  {
 
     constructor(params: any) {
         super(params);
@@ -10,4 +10,4 @@ class WelcomeModel extends BaseModel  {
 
 }
 
-export default WelcomeModel;
+export default UserModel;
